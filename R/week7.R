@@ -37,7 +37,21 @@ week7_tbl <- read_csv ("../data/week3.csv") %>%
     ggplot(aes(q1,q2))+
     geom_jitter()+
     facet_wrap(~gender) +    
-  xlab("Score on Q1")+
+    xlab("Score on Q1")+
     ylab("Score on Q2")} %>%
   ggsave(filename = "../figs/fig3.png", ., height=3, width=6, units="in", dpi=600)
-  
+{week7_tbl %>%  
+    ggplot(aes(x = gender, y = as.numeric(timeSpent))) +
+    geom_boxplot() +
+    xlab("Gender")+
+    ylab("Time Elapsed (mins)")} %>%
+  ggsave(filename = "../figs/fig4.png", ., height=3, width=6, units="in", dpi=600)
+{week7_tbl %>%  
+    ggplot(aes(x = q5, y = q7, color = condition)) +
+    geom_jitter() +
+    geom_smooth(method = lm, se = FALSE)+
+    labs(color = "Experimental Condition")+
+    theme(legend.position = "bottom", legend.background = element_rect(fill = "#E0E0E0"), axis.title = element_text(size = 8))+
+    xlab("Score on Q5")+
+    ylab("Score on Q7")} %>%
+  ggsave(filename = "../figs/fig5.png", ., height=3, width=6, units="in", dpi=600)
